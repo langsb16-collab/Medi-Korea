@@ -1,6 +1,7 @@
 import { Hono } from 'hono'
 import { cors } from 'hono/cors'
 import { serveStatic } from 'hono/cloudflare-workers'
+import { faqData } from './faq-data'
 
 type Bindings = {
   DB: D1Database;
@@ -37,6 +38,9 @@ const translations = {
     experienced_doctors: '경험 많은 의료진',
     affordable_price: '합리적인 가격',
     safety: '안전한 시술',
+    chatbot_title: '자동응답봇',
+    chatbot_welcome: '무엇을 도와드릴까요?',
+    chatbot_select: '질문을 선택하세요',
     categories_list: {
       plastic_surgery: '성형외과',
       dermatology: '피부과',
@@ -48,7 +52,14 @@ const translations = {
       orthopedics: '정형외과',
       obstetrics: '산부인과',
       urology: '비뇨의학과'
-    }
+    },
+    faq: [
+      { q: 'Medi Trip Korea는 어떤 플랫폼인가요?', a: '해외 환자에게 한국의 의료·시술 정보, 병원 소개, 가격, 건강검진 패키지, 상담 신청까지 한 번에 제공하는 의료관광 종합 플랫폼입니다.' },
+      { q: '어떤 언어를 지원하나요?', a: '한국어, 영어, 중국어, 일본어, 베트남어, 아랍어 총 6개 언어를 지원합니다.' },
+      { q: '실시간 상담은 어디에서 가능한가요?', a: '중국은 WeChat, 다른 국가는 Telegram 등 글로벌 메신저로 1:1 실시간 상담이 가능합니다.' },
+      { q: '상담 신청 방법은 어떻게 되나요?', a: '이름, 국적, 연락처, 희망 시술을 입력하고 필요 시 사진 또는 의료자료를 업로드하면 상담이 접수됩니다.' },
+      { q: '시술 가격은 어떻게 확인할 수 있나요?', a: '각 시술 상세 페이지에서 예상가격, 시술시간, 회복기간 등을 간단히 확인할 수 있습니다. 정확한 비용은 상담 시 안내됩니다.' }
+    ]
   },
   en: {
     title: 'Medi Trip Korea',
@@ -70,6 +81,9 @@ const translations = {
     experienced_doctors: 'Experienced Doctors',
     affordable_price: 'Affordable Prices',
     safety: 'Safe Procedures',
+    chatbot_title: 'AI Chatbot',
+    chatbot_welcome: 'How can I help you?',
+    chatbot_select: 'Select a question',
     categories_list: {
       plastic_surgery: 'Plastic Surgery',
       dermatology: 'Dermatology',
@@ -103,6 +117,9 @@ const translations = {
     experienced_doctors: '经验丰富的医生',
     affordable_price: '合理价格',
     safety: '安全治疗',
+    chatbot_title: '智能客服',
+    chatbot_welcome: '有什么可以帮您？',
+    chatbot_select: '请选择问题',
     categories_list: {
       plastic_surgery: '整形外科',
       dermatology: '皮肤科',
@@ -136,6 +153,9 @@ const translations = {
     experienced_doctors: '経験豊富な医師',
     affordable_price: '合理的な価格',
     safety: '安全な施術',
+    chatbot_title: 'チャットボット',
+    chatbot_welcome: '何かお手伝いできますか？',
+    chatbot_select: '質問を選択してください',
     categories_list: {
       plastic_surgery: '整形外科',
       dermatology: '皮膚科',
@@ -169,6 +189,9 @@ const translations = {
     experienced_doctors: 'Bác sĩ Giàu kinh nghiệm',
     affordable_price: 'Giá cả Phải chăng',
     safety: 'Thủ thuật An toàn',
+    chatbot_title: 'Trợ lý Ảo',
+    chatbot_welcome: 'Tôi có thể giúp gì cho bạn?',
+    chatbot_select: 'Chọn câu hỏi',
     categories_list: {
       plastic_surgery: 'Phẫu thuật Thẩm mỹ',
       dermatology: 'Da liễu',
@@ -202,6 +225,9 @@ const translations = {
     experienced_doctors: 'أطباء ذوو خبرة',
     affordable_price: 'أسعار معقولة',
     safety: 'إجراءات آمنة',
+    chatbot_title: 'مساعد آلي',
+    chatbot_welcome: 'كيف يمكنني مساعدتك؟',
+    chatbot_select: 'اختر سؤالاً',
     categories_list: {
       plastic_surgery: 'الجراحة التجميلية',
       dermatology: 'الأمراض الجلدية',
@@ -226,6 +252,15 @@ app.get('/api/translations/:lang', (c) => {
     return c.json(translations[lang]);
   }
   return c.json(translations.en);
+});
+
+// Get FAQ data for chatbot
+app.get('/api/faq/:lang', (c) => {
+  const lang = c.req.param('lang') as keyof typeof faqData;
+  if (faqData[lang]) {
+    return c.json(faqData[lang]);
+  }
+  return c.json(faqData.en);
 });
 
 // Get all procedures
@@ -674,6 +709,38 @@ app.get('/', (c) => {
             </div>
         </section>
 
+        <!-- Chatbot Floating Button -->
+        <button id="chatbotBtn" class="fixed bottom-6 ${lang === 'ar' ? 'left-6' : 'right-6'} z-50 bg-gradient-to-r from-purple-600 to-indigo-600 text-white w-16 h-16 rounded-full shadow-2xl hover:scale-110 transition-transform duration-300 flex items-center justify-center">
+            <i class="fas fa-robot text-2xl"></i>
+        </button>
+
+        <!-- Chatbot Panel -->
+        <div id="chatbotPanel" class="fixed bottom-24 ${lang === 'ar' ? 'left-6' : 'right-6'} z-50 bg-white rounded-2xl shadow-2xl w-96 max-w-full transform translate-y-full opacity-0 transition-all duration-300 hidden">
+            <div class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white p-4 rounded-t-2xl flex justify-between items-center">
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-robot text-2xl"></i>
+                    <span class="font-bold text-lg">${t.chatbot_title}</span>
+                </div>
+                <button id="closeChatbot" class="text-white hover:bg-white/20 p-2 rounded-full">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="p-4 h-96 overflow-y-auto" id="chatbotContent">
+                <p class="text-gray-600 mb-4">${t.chatbot_welcome}</p>
+                <p class="text-sm text-gray-500 mb-3">${t.chatbot_select}</p>
+                <div id="faqList" class="space-y-2">
+                    <!-- FAQ items will be loaded here -->
+                </div>
+                <div id="faqAnswer" class="mt-4 p-4 bg-purple-50 rounded-lg hidden">
+                    <button id="backToFaq" class="text-purple-600 hover:text-purple-800 mb-2 flex items-center gap-1">
+                        <i class="fas fa-arrow-left"></i>
+                        <span class="text-sm">돌아가기</span>
+                    </button>
+                    <p class="text-gray-800" id="answerText"></p>
+                </div>
+            </div>
+        </div>
+
         <!-- Footer -->
         <footer class="bg-gray-800 text-white py-8">
             <div class="container mx-auto px-4 text-center">
@@ -840,6 +907,82 @@ app.get('/', (c) => {
             
             // Initial load
             loadProcedures();
+            
+            // ========== CHATBOT FUNCTIONALITY ==========
+            const chatbotBtn = document.getElementById('chatbotBtn');
+            const chatbotPanel = document.getElementById('chatbotPanel');
+            const closeChatbot = document.getElementById('closeChatbot');
+            const faqList = document.getElementById('faqList');
+            const faqAnswer = document.getElementById('faqAnswer');
+            const answerText = document.getElementById('answerText');
+            const backToFaq = document.getElementById('backToFaq');
+            
+            let faqDataLoaded = [];
+            
+            // Toggle chatbot panel
+            chatbotBtn.addEventListener('click', async function() {
+                chatbotPanel.classList.toggle('hidden');
+                if (!chatbotPanel.classList.contains('hidden')) {
+                    setTimeout(() => {
+                        chatbotPanel.classList.remove('translate-y-full', 'opacity-0');
+                    }, 10);
+                    
+                    // Load FAQ data if not loaded
+                    if (faqDataLoaded.length === 0) {
+                        await loadFAQs();
+                    }
+                } else {
+                    chatbotPanel.classList.add('translate-y-full', 'opacity-0');
+                }
+            });
+            
+            // Close chatbot
+            closeChatbot.addEventListener('click', function() {
+                chatbotPanel.classList.add('translate-y-full', 'opacity-0');
+                setTimeout(() => {
+                    chatbotPanel.classList.add('hidden');
+                }, 300);
+            });
+            
+            // Load FAQs
+            async function loadFAQs() {
+                try {
+                    const response = await axios.get(\`/api/faq/\${currentLang}\`);
+                    faqDataLoaded = response.data.faqs || [];
+                    
+                    faqList.innerHTML = faqDataLoaded.map((faq, index) => \`
+                        <button 
+                            class="w-full text-left p-3 bg-gray-50 hover:bg-purple-50 rounded-lg transition-colors text-sm border border-gray-200 hover:border-purple-300"
+                            onclick="showAnswer(\${index})"
+                        >
+                            <i class="fas fa-question-circle text-purple-600 mr-2"></i>
+                            \${faq.q}
+                        </button>
+                    \`).join('');
+                } catch (error) {
+                    console.error('Error loading FAQs:', error);
+                    faqList.innerHTML = '<p class="text-red-500 text-sm">Failed to load FAQs</p>';
+                }
+            }
+            
+            // Show answer
+            window.showAnswer = function(index) {
+                const faq = faqDataLoaded[index];
+                if (faq) {
+                    answerText.innerHTML = \`
+                        <p class="font-semibold text-purple-700 mb-2"><i class="fas fa-question-circle mr-2"></i>\${faq.q}</p>
+                        <p class="text-gray-700">\${faq.a}</p>
+                    \`;
+                    faqList.classList.add('hidden');
+                    faqAnswer.classList.remove('hidden');
+                }
+            }
+            
+            // Back to FAQ list
+            backToFaq.addEventListener('click', function() {
+                faqAnswer.classList.add('hidden');
+                faqList.classList.remove('hidden');
+            });
         </script>
     </body>
     </html>
