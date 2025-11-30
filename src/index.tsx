@@ -510,6 +510,39 @@ app.get('/', (c) => {
             background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
           }
           
+          .why-korea-section {
+            position: relative;
+            overflow: hidden;
+          }
+          
+          .why-korea-section::before,
+          .why-korea-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 30%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+            z-index: 0;
+          }
+          
+          .why-korea-section::before {
+            left: 0;
+            background-image: url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&auto=format&fit=crop');
+          }
+          
+          .why-korea-section::after {
+            right: 0;
+            background-image: url('https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=800&auto=format&fit=crop');
+          }
+          
+          .why-korea-content {
+            position: relative;
+            z-index: 1;
+          }
+          
           .card-hover {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
           }
@@ -519,12 +552,7 @@ app.get('/', (c) => {
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
           }
           
-          .floating-btn {
-            position: fixed;
-            bottom: 30px;
-            ${lang === 'ar' ? 'left: 30px;' : 'right: 30px;'}
-            z-index: 1000;
-          }
+
           
           .lang-selector {
             position: fixed;
@@ -560,23 +588,23 @@ app.get('/', (c) => {
         </section>
 
         <!-- Why Korea Section -->
-        <section class="py-16 bg-white">
-            <div class="container mx-auto px-4">
+        <section class="py-16 bg-white why-korea-section">
+            <div class="container mx-auto px-4 why-korea-content">
                 <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">${t.why_korea}</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div class="text-center p-6 card-hover bg-gray-50 rounded-lg">
+                    <div class="text-center p-6 card-hover bg-white bg-opacity-90 rounded-lg shadow-md">
                         <i class="fas fa-microscope text-5xl text-purple-600 mb-4"></i>
                         <h3 class="text-xl font-semibold mb-2">${t.advanced_tech}</h3>
                     </div>
-                    <div class="text-center p-6 card-hover bg-gray-50 rounded-lg">
+                    <div class="text-center p-6 card-hover bg-white bg-opacity-90 rounded-lg shadow-md">
                         <i class="fas fa-user-md text-5xl text-purple-600 mb-4"></i>
                         <h3 class="text-xl font-semibold mb-2">${t.experienced_doctors}</h3>
                     </div>
-                    <div class="text-center p-6 card-hover bg-gray-50 rounded-lg">
+                    <div class="text-center p-6 card-hover bg-white bg-opacity-90 rounded-lg shadow-md">
                         <i class="fas fa-dollar-sign text-5xl text-purple-600 mb-4"></i>
                         <h3 class="text-xl font-semibold mb-2">${t.affordable_price}</h3>
                     </div>
-                    <div class="text-center p-6 card-hover bg-gray-50 rounded-lg">
+                    <div class="text-center p-6 card-hover bg-white bg-opacity-90 rounded-lg shadow-md">
                         <i class="fas fa-shield-alt text-5xl text-purple-600 mb-4"></i>
                         <h3 class="text-xl font-semibold mb-2">${t.safety}</h3>
                     </div>
@@ -645,11 +673,6 @@ app.get('/', (c) => {
                 </form>
             </div>
         </section>
-
-        <!-- Floating WhatsApp Button -->
-        <a href="https://wa.me/821012345678" target="_blank" class="floating-btn bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition duration-300">
-            <i class="fab fa-whatsapp text-3xl"></i>
-        </a>
 
         <!-- Footer -->
         <footer class="bg-gray-800 text-white py-8">
