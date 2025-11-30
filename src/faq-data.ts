@@ -13,7 +13,22 @@ export const faqData = {
       { q: '한국 의료 관광 프로세스는 어떻게 진행되나요?', a: '상담 → 예약 → 입국 지원 → 병원 방문 → 진료/시술 → 회복 관리 → 귀국 후 사후관리 순으로 진행됩니다.' },
       { q: '병원과 의사는 어떻게 선정되나요?', a: '한국 내 인증된 병원 및 전문 의료진을 기반으로 안정성과 실력 중심으로 파트너 기관을 선정합니다.' },
       { q: '의료 시술 후 사후관리는 어떻게 진행되나요?', a: '시술 후 회복 가이드와 상태 체크를 메신저를 통해 지속적으로 지원합니다.' },
-      { q: '시술 전 준비해야 할 것은 무엇인가요?', a: '복용 중인 약, 병력 정보, 알레르기 유무, 최근 검사 결과 등이 필요할 수 있습니다.' }
+      { q: '시술 전 준비해야 할 것은 무엇인가요?', a: '복용 중인 약, 병력 정보, 알레르기 유무, 최근 검사 결과 등이 필요할 수 있습니다.' },
+      { q: '공항 픽업 서비스가 있나요?', a: '네, 예약 시 요청하시면 공항 픽업 서비스를 제공해드립니다.' },
+      { q: '입국 전 필요한 서류는 무엇인가요?', a: '여권, 비자(해당 국가), 의료 목적 초청장 등이 필요할 수 있습니다.' },
+      { q: '숙박은 어떻게 해결하나요?', a: '병원 근처 호텔 또는 게스트하우스 예약을 도와드립니다.' },
+      { q: '통역 서비스는 제공되나요?', a: '네, 병원 방문 및 상담 시 전문 통역사를 배치해드립니다.' },
+      { q: '결제는 어떻게 진행되나요?', a: '현금, 카드, 계좌이체, 국제송금 등 다양한 결제 방법을 지원합니다.' },
+      { q: '환불 정책은 어떻게 되나요?', a: '각 병원 및 시술에 따라 환불 정책이 다르므로 상담 시 안내해드립니다.' },
+      { q: '의료사고 발생 시 대응은?', a: '보험 가입 병원과 협력하며, 사고 발생 시 법적·의료적 지원을 제공합니다.' },
+      { q: '한국에서 얼마나 체류해야 하나요?', a: '시술 종류에 따라 3일~2주 정도 체류가 필요할 수 있습니다.' },
+      { q: '가족 동반 가능한가요?', a: '네, 가족이나 친구와 함께 방문하실 수 있습니다.' },
+      { q: '비자 발급 지원이 가능한가요?', a: '네, 의료 목적 비자 발급을 위한 초청장 및 필요 서류를 제공해드립니다.' },
+      { q: '재방문이 필요한 경우는?', a: '시술 종류에 따라 사후 점검을 위한 재방문이 필요할 수 있습니다.' },
+      { q: '온라인 사후 진료도 가능한가요?', a: '네, 귀국 후에도 화상 통화나 메신저를 통한 원격 진료가 가능합니다.' },
+      { q: '한국 관광도 함께 가능한가요?', a: '네, 의료 일정 외 시간에 서울 시내 관광이나 쇼핑을 즐기실 수 있습니다.' },
+      { q: '긴급 상황 발생 시 연락처는?', a: '24시간 긴급 연락망을 제공하며, 언제든지 도움을 요청하실 수 있습니다.' },
+      { q: 'Medi Trip Korea는 안전한가요?', a: '정부 인증 병원 및 전문 의료진과 협력하며, 모든 절차는 투명하게 진행됩니다.' }
     ]
   },
   en: {
@@ -29,7 +44,22 @@ export const faqData = {
       { q: 'How does the Korean medical tourism process work?', a: 'The process is: Consultation → Reservation → Entry support → Hospital visit → Treatment/Procedure → Recovery management → Post-care after returning home.' },
       { q: 'How are partner hospitals and doctors selected?', a: 'We partner with certified hospitals and experienced medical professionals in Korea, prioritizing safety, expertise, and reliability.' },
       { q: 'How is post-procedure aftercare provided?', a: 'We continuously support you through messenger-based recovery guidance and condition checks after the procedure.' },
-      { q: 'What should I prepare before the procedure?', a: 'You may need information such as current medications, medical history, allergies, and recent test results.' }
+      { q: 'What should I prepare before the procedure?', a: 'You may need information such as current medications, medical history, allergies, and recent test results.' },
+      { q: 'Do you provide airport pickup service?', a: 'Yes, we can arrange airport pickup service upon request when making a reservation.' },
+      { q: 'What documents do I need before entering Korea?', a: 'You may need a passport, visa (depending on your country), and a medical invitation letter.' },
+      { q: 'How can I arrange accommodation?', a: 'We help you book hotels or guesthouses near the hospital.' },
+      { q: 'Is an interpreter service available?', a: 'Yes, we provide professional interpreters during hospital visits and consultations.' },
+      { q: 'What payment methods are accepted?', a: 'We support various payment methods including cash, credit card, bank transfer, and international wire transfer.' },
+      { q: 'What is the refund policy?', a: 'Refund policies vary by hospital and procedure. We will provide details during consultation.' },
+      { q: 'What happens in case of a medical accident?', a: 'We partner with insured hospitals and provide legal and medical support if an accident occurs.' },
+      { q: 'How long do I need to stay in Korea?', a: 'Depending on the procedure, you may need to stay for 3 days to 2 weeks.' },
+      { q: 'Can I bring family members?', a: 'Yes, you can visit with your family or friends.' },
+      { q: 'Can you help with visa issuance?', a: 'Yes, we provide invitation letters and necessary documents for medical visa applications.' },
+      { q: 'Will I need to revisit Korea?', a: 'Depending on the procedure, follow-up visits may be required for post-treatment checkups.' },
+      { q: 'Is online follow-up care available?', a: 'Yes, remote consultations via video call or messenger are available after returning home.' },
+      { q: 'Can I do sightseeing in Korea?', a: 'Yes, you can enjoy sightseeing in Seoul or shopping outside your medical schedule.' },
+      { q: 'What is the emergency contact?', a: 'We provide a 24-hour emergency hotline for immediate assistance whenever needed.' },
+      { q: 'Is Medi Trip Korea safe?', a: 'We work only with government-certified hospitals and professional medical staff. All procedures are conducted transparently.' }
     ]
   },
   zh: {
@@ -45,7 +75,22 @@ export const faqData = {
       { q: '韩国医疗旅游流程是怎样的？', a: '咨询 → 预约 → 入境协助 → 医院就诊 → 治疗/手术 → 恢复管理 → 回国后术后护理。' },
       { q: '医院和医生是如何筛选的？', a: '我们与韩国国内经过认证、具有丰富经验的医院和专业医疗团队合作，以安全性与专业实力为首要标准。' },
       { q: '手术后的术后管理如何进行？', a: '手术后将通过通讯工具持续提供恢复指南与状态确认服务。' },
-      { q: '手术前需要准备什么？', a: '可能需要提供正在服用的药物、既往病史、过敏情况以及近期检查结果等信息。' }
+      { q: '手术前需要准备什么？', a: '可能需要提供正在服用的药物、既往病史、过敏情况以及近期检查结果等信息。' },
+      { q: '有机场接机服务吗？', a: '有的，预约时提出需求即可安排机场接机服务。' },
+      { q: '入境前需要哪些文件？', a: '可能需要护照、签证（视国家而定）以及医疗邀请函等。' },
+      { q: '住宿如何解决？', a: '我们会协助您预订医院附近的酒店或民宿。' },
+      { q: '提供翻译服务吗？', a: '是的，医院就诊和咨询时我们会安排专业翻译人员。' },
+      { q: '如何支付费用？', a: '支持现金、信用卡、银行转账、国际汇款等多种支付方式。' },
+      { q: '退款政策是怎样的？', a: '各医院和项目的退款政策有所不同，咨询时会详细说明。' },
+      { q: '发生医疗事故怎么办？', a: '我们与投保医院合作，若发生事故将提供法律和医疗支持。' },
+      { q: '在韩国需要停留多久？', a: '根据手术类型，可能需要停留3天至2周。' },
+      { q: '可以带家人同行吗？', a: '当然可以，您可以和家人或朋友一起前往。' },
+      { q: '可以协助办理签证吗？', a: '可以，我们会提供医疗签证所需的邀请函及相关文件。' },
+      { q: '是否需要再次访问韩国？', a: '根据手术类型，可能需要回访进行术后检查。' },
+      { q: '回国后可以在线复诊吗？', a: '可以，回国后可通过视频通话或通讯工具进行远程复诊。' },
+      { q: '可以在韩国观光吗？', a: '当然可以，医疗行程之外的时间可以在首尔观光或购物。' },
+      { q: '紧急情况联系方式是什么？', a: '我们提供24小时紧急联系热线，随时为您提供帮助。' },
+      { q: 'Medi Trip Korea 安全吗？', a: '我们仅与政府认证医院和专业医疗团队合作，所有流程透明进行。' }
     ]
   },
   ja: {
@@ -61,7 +106,22 @@ export const faqData = {
       { q: '韓国の医療観光プロセスはどのように進みますか？', a: '相談 → 予約 → 入国サポート → 病院訪問 → 診療/施術 → 回復管理 → 帰国後のアフターケア の順で進行します。' },
       { q: '病院や医師はどのように選定されていますか？', a: '韓国内で認証された病院と専門性の高い医療スタッフを基準に、安全性と実力を最優先でパートナー機関として選定しています。' },
       { q: '施術後のアフターケアはどのように行われますか？', a: '施術後はメッセンジャーを通して、回復ガイドや状態チェックを継続的にサポートします。' },
-      { q: '施術前に準備するものは何がありますか？', a: '服用中の薬、既往歴、アレルギー有無、最近の検査結果などが必要になる場合があります。' }
+      { q: '施術前に準備するものは何がありますか？', a: '服用中の薬、既往歴、アレルギー有無、最近の検査結果などが必要になる場合があります。' },
+      { q: '空港送迎サービスはありますか？', a: 'はい、予約時にリクエストいただければ空港送迎サービスを手配いたします。' },
+      { q: '入国前に必要な書類は何ですか？', a: 'パスポート、ビザ（国により）、医療目的の招待状などが必要になる場合があります。' },
+      { q: '宿泊はどう手配すればいいですか？', a: '病院近くのホテルやゲストハウスの予約をお手伝いします。' },
+      { q: '通訳サービスは提供されますか？', a: 'はい、病院訪問や相談時に専門通訳を配置いたします。' },
+      { q: '支払い方法は何がありますか？', a: '現金、クレジットカード、銀行振込、国際送金など様々な決済方法に対応しています。' },
+      { q: '返金ポリシーはどうなっていますか？', a: '各病院や施術により返金ポリシーが異なりますので、相談時にご案内いたします。' },
+      { q: '医療事故が発生した場合は？', a: '保険加入病院と提携しており、事故発生時は法的・医療的サポートを提供します。' },
+      { q: '韓国にどのくらい滞在する必要がありますか？', a: '施術の種類により3日〜2週間程度の滞在が必要です。' },
+      { q: '家族同伴は可能ですか？', a: 'はい、ご家族やご友人と一緒にご訪問いただけます。' },
+      { q: 'ビザ発給のサポートは可能ですか？', a: 'はい、医療目的ビザ発給のための招待状及び必要書類を提供いたします。' },
+      { q: '再訪問が必要な場合は？', a: '施術の種類により、術後チェックのための再訪問が必要な場合があります。' },
+      { q: 'オンライン診療も可能ですか？', a: 'はい、帰国後もビデオ通話やメッセンジャーを通じた遠隔診療が可能です。' },
+      { q: '韓国観光も一緒にできますか？', a: 'はい、医療スケジュール以外の時間にソウル市内観光やショッピングをお楽しみいただけます。' },
+      { q: '緊急時の連絡先は？', a: '24時間緊急連絡網を提供しており、いつでもサポートをご依頼いただけます。' },
+      { q: 'Medi Trip Korea は安全ですか？', a: '政府認証の病院及び専門医療スタッフと提携しており、すべての手続きは透明に進行されます。' }
     ]
   },
   vi: {
@@ -77,7 +137,22 @@ export const faqData = {
       { q: 'Quy trình du lịch y tế tại Hàn Quốc diễn ra như thế nào?', a: 'Tư vấn → Đặt lịch → Hỗ trợ nhập cảnh → Đến bệnh viện → Điều trị/thủ thuật → Quản lý hồi phục → Chăm sóc sau điều trị khi về nước.' },
       { q: 'Bệnh viện và bác sĩ được lựa chọn theo tiêu chí nào?', a: 'Chúng tôi hợp tác với các bệnh viện được chứng nhận tại Hàn Quốc và đội ngũ y bác sĩ có chuyên môn cao, dựa trên các tiêu chí về an toàn và năng lực chuyên môn.' },
       { q: 'Chăm sóc sau điều trị được thực hiện như thế nào?', a: 'Sau khi điều trị, chúng tôi hỗ trợ liên tục thông qua tin nhắn với hướng dẫn hồi phục và kiểm tra tình trạng sức khỏe.' },
-      { q: 'Cần chuẩn bị gì trước khi thực hiện thủ thuật?', a: 'Bạn có thể cần cung cấp thông tin về thuốc đang dùng, tiền sử bệnh, dị ứng, hoặc kết quả kiểm tra gần đây.' }
+      { q: 'Cần chuẩn bị gì trước khi thực hiện thủ thuật?', a: 'Bạn có thể cần cung cấp thông tin về thuốc đang dùng, tiền sử bệnh, dị ứng, hoặc kết quả kiểm tra gần đây.' },
+      { q: 'Có dịch vụ đón sân bay không?', a: 'Có, chúng tôi có thể sắp xếp dịch vụ đón sân bay khi bạn yêu cầu đặt lịch.' },
+      { q: 'Cần những giấy tờ gì trước khi nhập cảnh?', a: 'Bạn có thể cần hộ chiếu, visa (tùy quốc gia), và thư mời y tế.' },
+      { q: 'Làm sao để giải quyết chỗ ở?', a: 'Chúng tôi sẽ giúp bạn đặt khách sạn hoặc nhà khách gần bệnh viện.' },
+      { q: 'Có dịch vụ phiên dịch không?', a: 'Có, chúng tôi cung cấp phiên dịch viên chuyên nghiệp trong các buổi khám và tư vấn.' },
+      { q: 'Hình thức thanh toán nào được chấp nhận?', a: 'Chúng tôi hỗ trợ nhiều hình thức thanh toán như tiền mặt, thẻ tín dụng, chuyển khoản ngân hàng, và chuyển khoản quốc tế.' },
+      { q: 'Chính sách hoàn tiền như thế nào?', a: 'Chính sách hoàn tiền khác nhau tùy bệnh viện và thủ thuật. Chúng tôi sẽ cung cấp chi tiết khi tư vấn.' },
+      { q: 'Nếu xảy ra tai nạn y tế thì sao?', a: 'Chúng tôi hợp tác với các bệnh viện có bảo hiểm và cung cấp hỗ trợ pháp lý cũng như y tế nếu có tai nạn xảy ra.' },
+      { q: 'Tôi cần lưu lại Hàn Quốc bao lâu?', a: 'Tùy loại thủ thuật, bạn có thể cần lưu lại từ 3 ngày đến 2 tuần.' },
+      { q: 'Tôi có thể đi cùng gia đình không?', a: 'Có, bạn có thể đến thăm cùng gia đình hoặc bạn bè.' },
+      { q: 'Có thể hỗ trợ xin visa không?', a: 'Có, chúng tôi cung cấp thư mời và các giấy tờ cần thiết cho việc xin visa y tế.' },
+      { q: 'Liệu tôi có cần quay lại Hàn Quốc?', a: 'Tùy loại thủ thuật, có thể cần quay lại để kiểm tra sau điều trị.' },
+      { q: 'Có thể tái khám trực tuyến không?', a: 'Có, sau khi về nước bạn có thể tái khám từ xa qua video call hoặc tin nhắn.' },
+      { q: 'Tôi có thể đi tham quan ở Hàn Quốc không?', a: 'Có, ngoài lịch trình y tế bạn có thể tham quan Seoul hoặc mua sắm.' },
+      { q: 'Số liên lạc khẩn cấp là gì?', a: 'Chúng tôi cung cấp đường dây nóng 24 giờ để hỗ trợ ngay lập tức khi cần.' },
+      { q: 'Medi Trip Korea có an toàn không?', a: 'Chúng tôi chỉ hợp tác với bệnh viện được chính phủ chứng nhận và đội ngũ y tế chuyên nghiệp. Mọi quy trình đều minh bạch.' }
     ]
   },
   ar: {
@@ -93,7 +168,22 @@ export const faqData = {
       { q: 'كيف تتم عملية السياحة الطبية في كوريا؟', a: 'تبدأ العملية بـ: الاستشارة → الحجز → دعم دخول كوريا → زيارة المستشفى → العلاج/الإجراء → إدارة التعافي → المتابعة بعد العودة إلى بلدك.' },
       { q: 'كيف يتم اختيار المستشفيات والأطباء؟', a: 'نتعاون فقط مع المستشفيات المعتمدة والأطباء المتخصصين في كوريا، مع إعطاء الأولوية للسلامة والخبرة العالية.' },
       { q: 'كيف تتم الرعاية بعد الإجراء الطبي؟', a: 'بعد الإجراء، نقدم المتابعة المستمرة وإرشادات التعافي عبر تطبيقات المراسلة.' },
-      { q: 'ماذا يجب أن أستعد قبل الخضوع للإجراء؟', a: 'قد تحتاج إلى تقديم معلومات عن الأدوية الحالية، التاريخ المرضي، الحساسية، ونتائج الفحوصات الحديثة.' }
+      { q: 'ماذا يجب أن أستعد قبل الخضوع للإجراء؟', a: 'قد تحتاج إلى تقديم معلومات عن الأدوية الحالية، التاريخ المرضي، الحساسية، ونتائج الفحوصات الحديثة.' },
+      { q: 'هل تقدمون خدمة الاستقبال من المطار؟', a: 'نعم، يمكننا ترتيب خدمة الاستقبال من المطار عند الطلب أثناء الحجز.' },
+      { q: 'ما المستندات المطلوبة قبل دخول كوريا؟', a: 'قد تحتاج إلى جواز سفر، تأشيرة (حسب البلد)، وخطاب دعوة طبية.' },
+      { q: 'كيف يمكن ترتيب السكن؟', a: 'نساعدك في حجز فنادق أو بيوت ضيافة بالقرب من المستشفى.' },
+      { q: 'هل يتوفر مترجم فوري؟', a: 'نعم، نوفر مترجمين محترفين أثناء زيارات المستشفى والاستشارات.' },
+      { q: 'ما طرق الدفع المتاحة؟', a: 'ندعم طرق دفع متعددة منها النقد، البطاقة الائتمانية، التحويل البنكي، والتحويل الدولي.' },
+      { q: 'ما هي سياسة الاسترداد؟', a: 'تختلف سياسات الاسترداد حسب المستشفى والإجراء. سنقدم التفاصيل أثناء الاستشارة.' },
+      { q: 'ماذا يحدث في حالة وقوع حادث طبي؟', a: 'نتعاون مع مستشفيات مؤمنة ونقدم الدعم القانوني والطبي في حالة وقوع حادث.' },
+      { q: 'كم من الوقت أحتاج للبقاء في كوريا؟', a: 'حسب نوع الإجراء، قد تحتاج للبقاء من 3 أيام إلى أسبوعين.' },
+      { q: 'هل يمكنني إحضار أفراد العائلة؟', a: 'نعم، يمكنك الزيارة مع عائلتك أو أصدقائك.' },
+      { q: 'هل يمكنكم المساعدة في إصدار التأشيرة؟', a: 'نعم، نوفر خطابات الدعوة والمستندات اللازمة لطلبات التأشيرة الطبية.' },
+      { q: 'هل سأحتاج لإعادة زيارة كوريا؟', a: 'حسب نوع الإجراء، قد تكون هناك حاجة لزيارات متابعة لفحوصات ما بعد العلاج.' },
+      { q: 'هل المتابعة عبر الإنترنت متاحة؟', a: 'نعم، الاستشارات عن بعد عبر مكالمات الفيديو أو تطبيقات المراسلة متاحة بعد العودة للوطن.' },
+      { q: 'هل يمكنني القيام بجولة سياحية في كوريا؟', a: 'نعم، يمكنك الاستمتاع بالجولات السياحية في سيول أو التسوق خارج جدول المواعيد الطبية.' },
+      { q: 'ما هو رقم الاتصال في حالات الطوارئ؟', a: 'نوفر خطاً ساخناً على مدار 24 ساعة للمساعدة الفورية عند الحاجة.' },
+      { q: 'هل Medi Trip Korea آمن؟', a: 'نعمل فقط مع مستشفيات معتمدة من الحكومة وطاقم طبي محترف. جميع الإجراءات تتم بشفافية.' }
     ]
   }
 };

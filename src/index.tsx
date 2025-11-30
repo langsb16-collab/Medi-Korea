@@ -617,7 +617,7 @@ app.get('/', (c) => {
           }
           
           .chatbot-icon {
-            font-size: 68px;
+            font-size: 102px;
             color: white;
           }
           
@@ -680,16 +680,16 @@ app.get('/', (c) => {
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
             border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 16px;
-            padding: 16px 24px;
+            border-radius: 12px;
+            padding: 10px 16px;
             margin: 0 auto 2rem auto;
-            max-width: 600px;
+            max-width: 520px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
           }
           
           .hero-subtitle-text {
-            font-size: 1rem;
-            line-height: 1.6;
+            font-size: 0.9rem;
+            line-height: 1.5;
             font-weight: 500;
             color: white;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -697,19 +697,19 @@ app.get('/', (c) => {
           
           @media (max-width: 768px) {
             .hero-subtitle-box {
-              padding: 12px 18px;
+              padding: 8px 14px;
               max-width: 90%;
             }
             .hero-subtitle-text {
-              font-size: 0.85rem;
-              line-height: 1.5;
+              font-size: 0.75rem;
+              line-height: 1.4;
             }
             .chatbot-btn {
               width: 105px;
               height: 105px;
             }
             .chatbot-icon {
-              font-size: 52px;
+              font-size: 78px;
             }
             .ai-badge {
               width: 38px;
@@ -853,18 +853,18 @@ app.get('/', (c) => {
 
         <!-- Chatbot Panel -->
         <div id="chatbotPanel" class="fixed bottom-24 ${lang === 'ar' ? 'left-6' : 'right-6'} z-50 bg-white rounded-2xl shadow-2xl w-96 max-w-full transform translate-y-full opacity-0 transition-all duration-300 hidden">
-            <div class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white p-4 rounded-t-2xl flex justify-between items-center">
+            <div class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white p-3 rounded-t-2xl flex justify-between items-center">
                 <div class="flex items-center gap-2">
-                    <i class="fas fa-robot text-2xl"></i>
-                    <span class="font-bold text-lg">${t.chatbot_title}</span>
+                    <i class="fas fa-robot text-lg"></i>
+                    <span class="font-bold text-base">${t.chatbot_title}</span>
                 </div>
-                <button id="closeChatbot" class="text-white hover:bg-white/20 p-2 rounded-full">
-                    <i class="fas fa-times"></i>
+                <button id="closeChatbot" class="text-white hover:bg-white/20 p-1.5 rounded-full">
+                    <i class="fas fa-times text-sm"></i>
                 </button>
             </div>
-            <div class="p-4 h-96 overflow-y-auto" id="chatbotContent">
-                <p class="text-gray-600 mb-4">${t.chatbot_welcome}</p>
-                <p class="text-sm text-gray-500 mb-3">${t.chatbot_select}</p>
+            <div class="p-3 h-96 overflow-y-auto" id="chatbotContent">
+                <p class="text-gray-600 mb-3 text-sm">${t.chatbot_welcome}</p>
+                <p class="text-xs text-gray-500 mb-2">${t.chatbot_select}</p>
                 <div id="faqList" class="space-y-2">
                     <!-- FAQ items will be loaded here -->
                 </div>
