@@ -595,6 +595,134 @@ app.get('/', (c) => {
             ${lang === 'ar' ? 'left: 20px;' : 'right: 20px;'}
             z-index: 1000;
           }
+          
+          /* Chatbot Styles */
+          .chatbot-btn {
+            position: relative;
+            width: 135px;
+            height: 135px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.5);
+            transition: all 0.3s ease;
+            cursor: pointer;
+          }
+          
+          .chatbot-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 18px 45px rgba(102, 126, 234, 0.65);
+          }
+          
+          .chatbot-icon {
+            font-size: 68px;
+            color: white;
+          }
+          
+          .ai-badge {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+            color: white;
+            border: 4px solid white;
+            box-shadow: 0 6px 15px rgba(255, 107, 107, 0.5);
+          }
+          
+          .chatbot-tooltip {
+            position: absolute;
+            bottom: 100%;
+            ${lang === 'ar' ? 'left: 0;' : 'right: 0;'}
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 14px 20px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+            white-space: nowrap;
+            font-size: 14px;
+            color: white;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+          }
+          
+          .chatbot-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            ${lang === 'ar' ? 'left: 25px;' : 'right: 25px;'}
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid #764ba2;
+          }
+          
+          .chatbot-btn:hover .chatbot-tooltip {
+            opacity: 1;
+            transform: translateY(0);
+          }
+          
+          .hero-subtitle-box {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            padding: 16px 24px;
+            margin: 0 auto 2rem auto;
+            max-width: 600px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+          }
+          
+          .hero-subtitle-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            font-weight: 500;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          }
+          
+          @media (max-width: 768px) {
+            .hero-subtitle-box {
+              padding: 12px 18px;
+              max-width: 90%;
+            }
+            .hero-subtitle-text {
+              font-size: 0.85rem;
+              line-height: 1.5;
+            }
+            .chatbot-btn {
+              width: 105px;
+              height: 105px;
+            }
+            .chatbot-icon {
+              font-size: 52px;
+            }
+            .ai-badge {
+              width: 38px;
+              height: 38px;
+              font-size: 15px;
+              border: 3px solid white;
+            }
+            .chatbot-tooltip {
+              padding: 10px 14px;
+              font-size: 12px;
+              margin-bottom: 15px;
+            }
+          }
         </style>
     </head>
     <body class="bg-gray-50">
@@ -615,7 +743,16 @@ app.get('/', (c) => {
             <div class="container mx-auto px-4 text-center">
                 <h1 class="text-5xl md:text-6xl font-bold mb-4">${t.title}</h1>
                 <p class="text-2xl md:text-3xl mb-6">${t.subtitle}</p>
-                <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto">${t.hero_description}</p>
+                <div class="hero-subtitle-box">
+                    <p class="hero-subtitle-text">
+                        ${lang === 'ko' ? '시술 정보부터 가격, 상담, 예약까지<br>한국 의료관광을 \'원스톱\'으로 해결해드립니다.' : 
+                          lang === 'en' ? 'From procedure information to pricing, consultation, and booking<br>We solve Korean medical tourism in \'one-stop\'.' :
+                          lang === 'zh' ? '从手术信息到价格、咨询、预约<br>一站式解决韩国医疗旅游' :
+                          lang === 'ja' ? '施術情報から価格、相談、予約まで<br>韓国医療観光をワンストップで解決します' :
+                          lang === 'vi' ? 'Từ thông tin thủ thuật đến giá cả, tư vấn, đặt lịch<br>Giải quyết du lịch y tế Hàn Quốc một cách toàn diện' :
+                          'من معلومات الإجراءات إلى الأسعار والاستشارات والحجز<br>نحل السياحة الطبية الكورية بشكل شامل'}
+                    </p>
+                </div>
                 <button onclick="scrollToConsultation()" class="bg-white text-purple-600 font-bold py-4 px-8 rounded-full text-lg hover:bg-gray-100 transition duration-300 shadow-lg">
                     <i class="fas fa-comments mr-2"></i>${t.consult_now}
                 </button>
