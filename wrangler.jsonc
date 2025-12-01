@@ -9,12 +9,5 @@
   "account_id": "e5dd8903a1e55abe924fd98b8636bbfe",
   "assets": {
     "directory": "./dist/static"
-  },
-  "d1_databases": [
-    {
-      "binding": "DB",
-      "database_name": "webapp-production",
-      "database_id": "local-d1-database"
-    }
-  ]
+  }
 }

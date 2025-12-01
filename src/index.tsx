@@ -4,7 +4,6 @@ import { serveStatic } from 'hono/cloudflare-workers'
 import { faqData } from './faq-data'
 
 type Bindings = {
-  DB: D1Database;
   UPLOADS: R2Bucket;
 }
 
@@ -263,57 +262,74 @@ app.get('/api/faq/:lang', (c) => {
   return c.json(faqData.en);
 });
 
-// Get all procedures
+// Get all procedures (temporary mock data - D1 will be added later)
 app.get('/api/procedures', async (c) => {
-  const { DB } = c.env;
   const category = c.req.query('category');
   const lang = c.req.query('lang') || 'en';
   
-  try {
-    let query = 'SELECT * FROM procedures';
-    let params: string[] = [];
-    
-    if (category) {
-      query += ' WHERE category = ?';
-      params.push(category);
+  // Mock data for demo
+  const mockProcedures = [
+    {
+      id: 1,
+      category: 'plastic_surgery',
+      name_ko: '쌍꺼풀 수술',
+      name_en: 'Double Eyelid Surgery',
+      name_zh: '双眼皮手术',
+      description_ko: '자연스러운 쌍꺼풀 라인 형성',
+      description_en: 'Natural double eyelid line formation',
+      description_zh: '形成自然的双眼皮线',
+      price_min: 1500,
+      price_max: 3000,
+      duration: '1-2 hours',
+      recovery_days: '7-10 days'
+    },
+    {
+      id: 2,
+      category: 'dermatology',
+      name_ko: '레이저 토닝',
+      name_en: 'Laser Toning',
+      name_zh: '激光调理',
+      description_ko: '피부톤 개선 및 미백',
+      description_en: 'Skin tone improvement and whitening',
+      description_zh: '改善肤色和美白',
+      price_min: 200,
+      price_max: 500,
+      duration: '30-60 minutes',
+      recovery_days: '0-1 days'
     }
-    
-    query += ' ORDER BY category, id';
-    
-    const result = params.length > 0 
-      ? await DB.prepare(query).bind(...params).all()
-      : await DB.prepare(query).all();
-    
-    return c.json({ success: true, data: result.results });
-  } catch (error: any) {
-    return c.json({ success: false, error: error.message }, 500);
-  }
+  ];
+  
+  const filteredData = category 
+    ? mockProcedures.filter(p => p.category === category)
+    : mockProcedures;
+  
+  return c.json({ success: true, data: filteredData });
 });
 
-// Get single procedure
+// Get single procedure (temporary mock data)
 app.get('/api/procedures/:id', async (c) => {
-  const { DB } = c.env;
   const id = c.req.param('id');
   
-  try {
-    const result = await DB.prepare('SELECT * FROM procedures WHERE id = ?')
-      .bind(id)
-      .first();
-    
-    if (!result) {
-      return c.json({ success: false, error: 'Procedure not found' }, 404);
-    }
-    
-    return c.json({ success: true, data: result });
-  } catch (error: any) {
-    return c.json({ success: false, error: error.message }, 500);
-  }
+  const mockProcedure = {
+    id: parseInt(id),
+    category: 'plastic_surgery',
+    name_ko: '쌍꺼풀 수술',
+    name_en: 'Double Eyelid Surgery',
+    name_zh: '双眼皮手术',
+    description_ko: '자연스러운 쌍꺼풀 라인 형성',
+    description_en: 'Natural double eyelid line formation',
+    description_zh: '形成自然的双眼皮线',
+    price_min: 1500,
+    price_max: 3000,
+    duration: '1-2 hours',
+    recovery_days: '7-10 days'
+  };
+  
+  return c.json({ success: true, data: mockProcedure });
 });
 
-// Submit consultation request
+// Submit consultation request (temporary - saves to console log)
 app.post('/api/consultations', async (c) => {
-  const { DB } = c.env;
-  
   try {
     const body = await c.req.json();
     const { name, email, phone, country, language, procedure_id, message, file_urls } = body;
@@ -323,24 +339,13 @@ app.post('/api/consultations', async (c) => {
       return c.json({ success: false, error: 'Missing required fields' }, 400);
     }
     
-    const result = await DB.prepare(`
-      INSERT INTO consultations (name, email, phone, country, language, procedure_id, message, file_urls, status)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'pending')
-    `).bind(
-      name,
-      email,
-      phone || null,
-      country,
-      language,
-      procedure_id || null,
-      message || null,
-      file_urls ? JSON.stringify(file_urls) : null
-    ).run();
+    // Log the consultation (will be saved to D1 later)
+    console.log('New consultation:', { name, email, phone, country, language, procedure_id, message, file_urls });
     
     return c.json({ 
       success: true, 
       message: 'Consultation request submitted successfully',
-      consultation_id: result.meta.last_row_id 
+      consultation_id: Date.now() 
     });
   } catch (error: any) {
     return c.json({ success: false, error: error.message }, 500);
@@ -406,84 +411,47 @@ app.get('/api/files/:key{.+}', async (c) => {
   }
 });
 
-// Get all hospitals
+// Get all hospitals (temporary mock data)
 app.get('/api/hospitals', async (c) => {
-  const { DB } = c.env;
+  const mockHospitals = [
+    { id: 1, name: 'Seoul Medical Center', rating: 4.8, location: 'Gangnam, Seoul' },
+    { id: 2, name: 'Korea Beauty Clinic', rating: 4.7, location: 'Apgujeong, Seoul' }
+  ];
   
-  try {
-    const result = await DB.prepare('SELECT * FROM hospitals ORDER BY rating DESC').all();
-    return c.json({ success: true, data: result.results });
-  } catch (error: any) {
-    return c.json({ success: false, error: error.message }, 500);
-  }
+  return c.json({ success: true, data: mockHospitals });
 });
 
-// Get reviews
+// Get reviews (temporary mock data)
 app.get('/api/reviews', async (c) => {
-  const { DB } = c.env;
-  const procedure_id = c.req.query('procedure_id');
-  const hospital_id = c.req.query('hospital_id');
+  const mockReviews = [
+    { id: 1, rating: 5, comment: 'Excellent service!', created_at: new Date().toISOString() },
+    { id: 2, rating: 4, comment: 'Very professional', created_at: new Date().toISOString() }
+  ];
   
-  try {
-    let query = 'SELECT * FROM reviews';
-    let params: string[] = [];
-    
-    if (procedure_id || hospital_id) {
-      query += ' WHERE';
-      if (procedure_id) {
-        query += ' procedure_id = ?';
-        params.push(procedure_id);
-      }
-      if (hospital_id) {
-        if (procedure_id) query += ' AND';
-        query += ' hospital_id = ?';
-        params.push(hospital_id);
-      }
-    }
-    
-    query += ' ORDER BY created_at DESC LIMIT 50';
-    
-    const result = params.length > 0
-      ? await DB.prepare(query).bind(...params).all()
-      : await DB.prepare(query).all();
-    
-    return c.json({ success: true, data: result.results });
-  } catch (error: any) {
-    return c.json({ success: false, error: error.message }, 500);
-  }
+  return c.json({ success: true, data: mockReviews });
 });
 
 // ==================== ADMIN API ====================
 
-// Get all consultation requests (admin)
+// Get all consultation requests (admin) - temporary mock data
 app.get('/api/admin/consultations', async (c) => {
-  const { DB } = c.env;
-  const status = c.req.query('status');
-  
-  try {
-    let query = 'SELECT * FROM consultations';
-    let params: string[] = [];
-    
-    if (status) {
-      query += ' WHERE status = ?';
-      params.push(status);
+  const mockConsultations = [
+    { 
+      id: 1, 
+      name: 'John Doe', 
+      email: 'john@example.com', 
+      country: 'USA', 
+      language: 'en', 
+      status: 'pending',
+      created_at: new Date().toISOString()
     }
-    
-    query += ' ORDER BY created_at DESC';
-    
-    const result = params.length > 0
-      ? await DB.prepare(query).bind(...params).all()
-      : await DB.prepare(query).all();
-    
-    return c.json({ success: true, data: result.results });
-  } catch (error: any) {
-    return c.json({ success: false, error: error.message }, 500);
-  }
+  ];
+  
+  return c.json({ success: true, data: mockConsultations });
 });
 
-// Update consultation status (admin)
+// Update consultation status (admin) - temporary mock
 app.put('/api/admin/consultations/:id', async (c) => {
-  const { DB } = c.env;
   const id = c.req.param('id');
   
   try {
@@ -494,11 +462,7 @@ app.put('/api/admin/consultations/:id', async (c) => {
       return c.json({ success: false, error: 'Status is required' }, 400);
     }
     
-    await DB.prepare(`
-      UPDATE consultations 
-      SET status = ?, updated_at = CURRENT_TIMESTAMP 
-      WHERE id = ?
-    `).bind(status, id).run();
+    console.log(`Update consultation ${id} to status: ${status}`);
     
     return c.json({ success: true, message: 'Consultation updated successfully' });
   } catch (error: any) {
