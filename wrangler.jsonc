@@ -16,11 +16,5 @@
       "database_name": "webapp-production",
       "database_id": "local-d1-database"
     }
-  ],
-  "r2_buckets": [
-    {
-      "binding": "UPLOADS",
-      "bucket_name": "webapp-uploads"
-    }
   ]
 }
